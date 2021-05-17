@@ -37,7 +37,7 @@ const App = () => {
 
   useEffect(() => {
     if(memes) {
-      const randomIndex = Math.floor(Math.random() * memes.data.length); // 文章を載せる場所をmeme毎に設定するために枚数を制限するなどした方がいいかもしれない
+      const randomIndex = Math.floor(Math.random() * memes.data.length);
       setMeme(memes.data[randomIndex]);      
     }
   }, [memes])

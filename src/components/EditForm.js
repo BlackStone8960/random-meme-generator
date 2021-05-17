@@ -64,7 +64,6 @@ const EditForm = (props) => {
             <button onClick={(e) => onSetPosition(e, index)} className="button">
               Set position
             </button>
-            {/* {form && <span>{form.positions[index].x}, {form.positions[index].y}</span>} */}
           </div>
         ))
       }

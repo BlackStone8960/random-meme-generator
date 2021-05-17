@@ -8,6 +8,8 @@ const MemeCanvas = ({ meme, formInfo }) => {
 
       const canvasElem = document.getElementById('canvas');
       const ctx = canvasElem.getContext('2d');
+      
+      // const downloadBtn = document.getElementById('download');
 
       ctx.clearRect(0, 0, meme.width, meme.height);
 
@@ -31,6 +33,10 @@ const MemeCanvas = ({ meme, formInfo }) => {
           ctx.strokeText(text, textX, textY);
           ctx.shadowBlur = 0;
           ctx.fillText(text, textX, textY);  
+
+          // downloadBtn.addEventListener('click', () => {
+          //   downloadBtn.href = canvasElem.toDataURL('image/jpeg');
+          // })
         })
       };  
     }
@@ -44,6 +50,8 @@ const MemeCanvas = ({ meme, formInfo }) => {
         id="canvas"
       >
       </canvas>
+      {/* Implement download button */}
+      {/* <a id="download" href="#" download="random-meme.jpg">DOWNLOAD MEME</a> */}
     </div>
   )
 };
