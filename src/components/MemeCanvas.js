@@ -3,18 +3,28 @@ import React, { useEffect } from 'react';
 const MemeCanvas = ({ meme, formInfo }) => {
   useEffect(() => {
     if (meme && formInfo) {
-      const canvasElem = document.getElementById('canvas');
-      const ctx = canvasElem.getContext('2d');
-      
-      ctx.clearRect(0, 0, meme.width, meme.height);
       const imgObj = new Image();
       imgObj.src =  meme.url;
-      ctx.font = `${formInfo.fontSize}px Arial`;
-      ctx.fillStyle = '#000000';
+
+      const canvasElem = document.getElementById('canvas');
+      const ctx = canvasElem.getContext('2d');
+
+      ctx.clearRect(0, 0, meme.width, meme.height);
+      ctx.font = `${formInfo.fontSize}px Impact`;
+      ctx.shadowColor = 'black';
+      ctx.lineWidth = 2;
+      ctx.fillStyle = 'white';
+
       imgObj.onload = () => {
         ctx.drawImage(imgObj, 0, 0);
         formInfo.texts.forEach((text, index) => {
-          ctx.fillText(`${text}`, (index + 1) * meme.width / 6, (index + 1) * meme.height / 6);  
+          const textWidth = ctx.measureText(text).width;
+          const textX = (meme.width - textWidth) / 2;
+          const textY = (index + 1) * meme.height / 2;
+          ctx.shadowBlur = 6;
+          ctx.strokeText(text, textX, textY);
+          ctx.shadowBlur = 0;
+          ctx.fillText(text, textX, textY);  
         })
       };  
     }

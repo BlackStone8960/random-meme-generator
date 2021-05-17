@@ -3,7 +3,7 @@ import formReducer from '../reducers/form';
 
 const initForm = {
   texts: [''],
-  fontSize: 28
+  fontSize: 36
 };
 
 const EditForm = (props) => {
@@ -14,7 +14,7 @@ const EditForm = (props) => {
       dispatchForm({
         type: 'INIT_FORM',
         texts: Array(props.meme.box_count).fill(''),
-        fontSize: 28
+        fontSize: 36
       });  
     }
   }, [props.meme]);
@@ -22,11 +22,6 @@ const EditForm = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
     props.onSubmit(form);
-    dispatchForm({
-      type: 'INIT_FORM',
-      texts: Array(props.meme.box_count).fill(''),
-      fontSize: form.fontSize
-    });  
   }
 
   return (

@@ -47,13 +47,12 @@ const App = () => {
   }, [memes])
 
   const onSubmit = (info) => {
-    // Make image using canvas?
     setFormInfo(info);
   };
   
   return (
     <div>
-      <EditForm onSubmit={onSubmit} meme={meme}/>
+      <EditForm meme={meme} onSubmit={onSubmit}/>
       <MemeCanvas meme={meme} formInfo={formInfo} />
     </div>
   );
