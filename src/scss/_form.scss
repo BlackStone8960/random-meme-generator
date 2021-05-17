@@ -1,0 +1,32 @@
+.edit-form {
+  margin: 20px auto;
+  width: 600px;
+
+  .form-row {
+    margin-bottom: 8px;
+    label {
+      margin-right: 16px;
+    }
+    input {
+      margin-right: 16px;
+      height: 2em;
+      width: 200px;
+    }
+    &#form-row-fontsize {
+      margin-right: 109px;
+    }
+  }
+  .go {
+    background-color: crimson;
+    color: #efefef;
+    padding: 5px 30px;
+    font-size: 24px;
+    margin-top: 16px;
+  }
+}
+
+.form-direction {
+  margin-top: 16px;
+  height: 20px;
+  font-weight: bold;
+}

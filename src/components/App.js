@@ -3,21 +3,17 @@ import axios from 'axios';
 import memesReducer from '../reducers/memes';
 import EditForm from './EditForm';
 import MemeCanvas from './MemeCanvas';
+import defaultForm from '../form/defaultForm';
 
 const initialState = {
   data: [],
   error: ''
 }
 
-const initialFormInfo = {
-  texts: [''],
-  fontSize: 20
-}
-
 const App = () => {
   const [memes, memesDispatch] = useReducer(memesReducer, initialState);
   const [meme, setMeme] = useState({});
-  const [formInfo, setFormInfo] = useState(initialFormInfo);
+  const [formInfo, setFormInfo] = useState(defaultForm);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -51,7 +47,8 @@ const App = () => {
   };
   
   return (
-    <div>
+    <div className="generator-wrapper">
+      <h1>Random Meme Generator</h1>
       <EditForm meme={meme} onSubmit={onSubmit}/>
       <MemeCanvas meme={meme} formInfo={formInfo} />
     </div>

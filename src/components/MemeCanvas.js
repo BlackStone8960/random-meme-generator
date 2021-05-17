@@ -10,17 +10,23 @@ const MemeCanvas = ({ meme, formInfo }) => {
       const ctx = canvasElem.getContext('2d');
 
       ctx.clearRect(0, 0, meme.width, meme.height);
-      ctx.font = `${formInfo.fontSize}px Impact`;
+
+      const fixRate = meme.width > 500 ? meme.width / 500 : 1;
+      const fixedFont = formInfo.fontSize * fixRate;
+      ctx.font = `${fixedFont}px Impact`;
       ctx.shadowColor = 'black';
       ctx.lineWidth = 2;
       ctx.fillStyle = 'white';
 
+      const canvasPosition = canvasElem.getBoundingClientRect();
+      const canvasPositionX = window.pageXOffset + canvasPosition.left;
+      const canvasPositionY = window.pageYOffset + canvasPosition.top;
+
       imgObj.onload = () => {
         ctx.drawImage(imgObj, 0, 0);
         formInfo.texts.forEach((text, index) => {
-          const textWidth = ctx.measureText(text).width;
-          const textX = (meme.width - textWidth) / 2;
-          const textY = (index + 1) * meme.height / 2;
+          const textX = (formInfo.positions[index].x - canvasPositionX) * fixRate;
+          const textY = (formInfo.positions[index].y - canvasPositionY + formInfo.fontSize) * fixRate;
           ctx.shadowBlur = 6;
           ctx.strokeText(text, textX, textY);
           ctx.shadowBlur = 0;
